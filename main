@@ -1,0 +1,606 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "FameHub🔥 - Premium (booga-booga ( 2019 )", HidePremium = false,IntroText = "FameHub🔥 - Premium",IntroEnabled = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- tabs
+
+
+local Healing = Window:MakeTab({
+	Name = "Heals",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Farming = Window:MakeTab({
+	Name = "Farming",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local GameVisuals = Window:MakeTab({
+	Name = "Game-Visuals",
+	Icon = "rbxassetid://9080470458",
+	PremiumOnly = false
+})
+
+local Misc = Window:MakeTab({
+	Name = "Keybinds",
+	Icon = "rbxassetid://8733216068",
+	PremiumOnly = false
+})
+
+local ReadMe = Window:MakeTab({
+	Name = "Read ME!",
+	Icon = "rbxassetid://7240801337",
+	PremiumOnly = false
+})
+
+ReadMe:AddParagraph("Thank You!","HEY! Thanks for using FameHub🔥 if You'd like more Scripts like this please join My Discord, The Link Will Be here: https://discord.gg/79rT93re, I'm working on More Script's as I publish This and I'm Very Excited to see Where this turns out thanks for supporting and using My Script's. BYE! CREDITS TO: ! Akira#9671, Clouded#8079, Fames#7177")
+
+-- global variables
+
+_G.AutoBlood = false
+_G.AutoBerries = false
+_G.AutoBluefruit = false
+_G.AutoLemons = false
+_G.AutoJelly = false
+
+-- functions
+
+function AutoPickUp()
+    local Player = game:GetService("Players").LocalPlayer
+    for _, v in pairs(workspace:GetChildren()) do
+        if v.Name == "Bloodfruit Bush" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+            game.ReplicatedStorage.Events.Pickup:FireServer(v)
+        end
+    end
+end
+
+function KeyBindBloodfruit()
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit")
+end
+
+function KeyBindBerries()
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry")
+end
+
+function KeyBindBluefruit()
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit")
+    game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit")
+end
+
+
+function AutoPlant()
+    local Player = game:GetService("Players").LocalPlayer
+    for _, v in pairs(workspace.Deployables:GetChildren()) do
+        if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+            game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Bloodfruit")
+        end
+    end
+end
+
+function AutoBlood()
+        while _G.AutoBlood == true do
+        if _G.AutoBlood == true then 
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health< 100 then
+        game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bloodfruit") -- fruit
+         end
+          task.wait()
+       end
+    end
+end
+
+function AutoBerries()
+    while _G.AutoBerries == true do
+        if _G.AutoBerries == true then 
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health< 100 then
+        game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Berry") -- fruit
+         end
+          task.wait()
+       end
+    end
+end
+
+function AutoBluefruit()
+    while _G.AutoBluefruit == true do
+        if _G.AutoBluefruit == true then 
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health< 100 then
+        game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Bluefruit") -- fruit
+         end
+          task.wait()
+       end
+    end
+end
+
+function AutoLemons()
+    while _G.AutoLemons == true do
+        if _G.AutoLemons == true then 
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health< 100 then
+        game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Lemon") -- fruit
+         end
+          task.wait()
+       end
+    end
+end
+
+function AutoJelly()
+    while _G.AutoJelly == true do
+        if _G.AutoJelly == true then 
+        if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").Health< 100 then
+        game:GetService("ReplicatedStorage").Events.UseBagItem:FireServer("Jelly") -- fruit
+         end
+          task.wait()
+       end
+    end
+end
+
+-- toggles
+
+
+Healing:AddToggle({
+	Name = "AutoHeal with - Bloodfruit",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoBlood = Value
+        AutoBlood()
+	end    
+})
+
+Healing:AddToggle({
+	Name = "AutoHeal with - Berries",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoBerries = Value
+        AutoBerries()
+	end    
+})
+
+Healing:AddToggle({
+	Name = "AutoHeal with - Bluefruit",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoBluefruit = Value
+        AutoBluefruit()
+	end    
+})
+
+Healing:AddToggle({
+	Name = "AutoHeal with - Lemons",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoLemons = Value
+        AutoLemons()
+	end    
+})
+
+Healing:AddToggle({
+	Name = "AutoHeal with - Jelly",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoJelly = Value
+        AutoJelly()
+	end    
+})
+
+local PlantBoxes = Farming:AddSection({
+	Name = "Plant Boxes"
+})
+
+
+Farming:AddButton({
+	Name = "Plant Boxes - (1 Layers of boxes)",
+	Callback = function()
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+        local RootPart = LocalPlayer.Character.HumanoidRootPart
+        local cframe = RootPart.CFrame
+        local Remote = game:GetService("ReplicatedStorage").Events.PlaceStructure
+        
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -9), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -8.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -8), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -7.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -7), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -6.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -3, -6), 0)
+  	end    
+})
+
+Farming:AddButton({
+	Name = "Plant Boxes - (2 Layers of boxes)",
+	Callback = function()
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+        local RootPart = LocalPlayer.Character.HumanoidRootPart
+        local cframe = RootPart.CFrame
+        local Remote = game:GetService("ReplicatedStorage").Events.PlaceStructure
+        
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -9), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -8.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -8), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -7.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -7), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -6.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2.5, -6), 0)
+  	end    
+})
+
+
+Farming:AddButton({
+	Name = "Plant Boxes - (3 Layers of boxes)",
+	Callback = function()
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+        local RootPart = LocalPlayer.Character.HumanoidRootPart
+        local cframe = RootPart.CFrame
+        local Remote = game:GetService("ReplicatedStorage").Events.PlaceStructure
+        
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -9), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -8.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -8), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -7.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -7), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -6.5), 0)
+        Remote:FireServer("Plant Box", cframe * CFrame.new(-0, -2, -6), 0)
+  	end    
+})
+
+local FruitToFarm = Farming:AddSection({
+	Name = "Fruit AutoFarms"
+})
+
+
+Farming:AddButton({
+	Name = "AutoFarm - Bloodfruit",
+	Callback = function()
+        local placekey = "p"
+        local plantkey = "["
+        local collectkey = "]"
+        local amountofpots = 40  
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        _G.plant = function()
+            for _, v in pairs(workspace.Deployables:GetChildren()) do
+                if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+                    game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Bloodfruit")
+                end
+            end
+        end
+        
+        _G.collect = function()
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name == "Bloodfruit Bush" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+                    game.ReplicatedStorage.Events.Pickup:FireServer(v)
+                end
+            end
+        end
+        
+        Mouse.KeyUp:connect(function(k)
+            if k == placekey then
+                for i = 1, amountofpots do
+                    game.ReplicatedStorage.Events.PlaceStructure:FireServer("Plant Box", Mouse.Hit, 0)
+                end
+            elseif k == plantkey then
+                _G.plant()
+            elseif k == collectkey then
+                _G.collect()
+            end
+        end)
+  	end    
+})
+
+Farming:AddButton({
+	Name = "AutoFarm - Berries",
+	Callback = function()
+        local placekey = "p"
+        local plantkey = "["
+        local collectkey = "]"
+        local amountofpots = 40  
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        _G.plant = function()
+            for _, v in pairs(workspace.Deployables:GetChildren()) do
+                if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+                    game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Berry")
+                end
+            end
+        end
+        
+        _G.collect = function()
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name == "Berry Bush" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+                    game.ReplicatedStorage.Events.Pickup:FireServer(v)
+                end
+            end
+        end
+        
+        Mouse.KeyUp:connect(function(k)
+            if k == placekey then
+                for i = 1, amountofpots do
+                    game.ReplicatedStorage.Events.PlaceStructure:FireServer("Plant Box", Mouse.Hit, 0)
+                end
+            elseif k == plantkey then
+                _G.plant()
+            elseif k == collectkey then
+                _G.collect()
+            end
+        end)
+  	end    
+})
+
+Farming:AddButton({
+	Name = "AutoFarm - Bluefruit",
+	Callback = function()
+        local placekey = "p"
+        local plantkey = "["
+        local collectkey = "]"
+        local amountofpots = 40  
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        _G.plant = function()
+            for _, v in pairs(workspace.Deployables:GetChildren()) do
+                if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+                    game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Bluefruit")
+                end
+            end
+        end
+        
+        _G.collect = function()
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name == "Bluefruit Bush" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+                    game.ReplicatedStorage.Events.Pickup:FireServer(v)
+                end
+            end
+        end
+        
+        Mouse.KeyUp:connect(function(k)
+            if k == placekey then
+                for i = 1, amountofpots do
+                    game.ReplicatedStorage.Events.PlaceStructure:FireServer("Plant Box", Mouse.Hit, 0)
+                end
+            elseif k == plantkey then
+                _G.plant()
+            elseif k == collectkey then
+                _G.collect()
+            end
+        end)
+  	end    
+})
+
+Farming:AddButton({
+	Name = "AutoFarm - Lemons",
+	Callback = function()
+        local placekey = "p"
+        local plantkey = "["
+        local collectkey = "]"
+        local amountofpots = 40  
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        _G.plant = function()
+            for _, v in pairs(workspace.Deployables:GetChildren()) do
+                if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+                    game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Lemon")
+                end
+            end
+        end
+        
+        _G.collect = function()
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name == "Lemon Tree" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+                    game.ReplicatedStorage.Events.Pickup:FireServer(v)
+                end
+            end
+        end
+        
+        Mouse.KeyUp:connect(function(k)
+            if k == placekey then
+                for i = 1, amountofpots do
+                    game.ReplicatedStorage.Events.PlaceStructure:FireServer("Plant Box", Mouse.Hit, 0)
+                end
+            elseif k == plantkey then
+                _G.plant()
+            elseif k == collectkey then
+                _G.collect()
+            end
+        end)
+  	end    
+})
+
+
+Farming:AddButton({
+	Name = "AutoFarm - Jelly",
+	Callback = function()
+        local placekey = "p"
+        local plantkey = "["
+        local collectkey = "]"
+        local amountofpots = 40  
+        
+        local Player = game:GetService("Players").LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        _G.plant = function()
+            for _, v in pairs(workspace.Deployables:GetChildren()) do
+                if v.Name == "Plant Box" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 500 then
+                    game.ReplicatedStorage.Events.InteractStructure:FireServer(v, "Jelly")
+                end
+            end
+        end
+        
+        _G.collect = function()
+            for _, v in pairs(workspace:GetChildren()) do
+                if v.Name == "Jelly Tree" and (Player.Character.Head.Position - v.PrimaryPart.Position).magnitude < 50 then
+                    game.ReplicatedStorage.Events.Pickup:FireServer(v)
+                end
+            end
+        end
+        
+        Mouse.KeyUp:connect(function(k)
+            if k == placekey then
+                for i = 1, amountofpots do
+                    game.ReplicatedStorage.Events.PlaceStructure:FireServer("Plant Box", Mouse.Hit, 0)
+                end
+            elseif k == plantkey then
+                _G.plant()
+            elseif k == collectkey then
+                _G.collect()
+            end
+        end)
+  	end    
+})
+
+GameVisuals:AddButton({
+	Name = "TP To The Void",
+	Callback = function()
+        game:GetService("TeleportService"):Teleport(10767870749)
+  	end    
+})
+
+GameVisuals:AddButton({
+	Name = "Night-Mode",
+	Callback = function()
+        game.Lighting.TimeOfDay = 3
+  	end    
+})
+
+GameVisuals:AddSlider({
+	Name = "Field Of View (FOV)",
+	Min = 10,
+	Max = 120,
+	Default = 70,
+	Color = Color3.fromRGB(60, 234, 176),
+	Increment = 1,
+	ValueName = "FOV",
+	Callback = function(Value)
+		game.Workspace.CurrentCamera.FieldOfView  = Value
+	end    
+})
+
+GameVisuals:AddSlider({
+	Name = "Brightness",
+	Min = 0.1,
+	Max = 3,
+	Default = 0.1,
+	Color = Color3.fromRGB(60, 234, 176),
+	Increment = 1,
+	ValueName = "Brightness",
+	Callback = function(Value)
+		game.Lighting.Brightness  = Value
+	end    
+})
+
+GameVisuals:AddSlider({
+	Name = "Saturation",
+	Min = 0.1,
+	Max = 3,
+	Default = 0.1,
+	Color = Color3.fromRGB(60, 234, 176),
+	Increment = 0.1,
+	ValueName = "Saturation",
+	Callback = function(Value)
+		game.Lighting.ColorCorrection.Saturation  = Value
+	end    
+})
+
+GameVisuals:AddSlider({
+	Name = "Contrast",
+	Min = 0.1,
+	Max = 3,
+	Default = 0.1,
+	Color = Color3.fromRGB(60, 234, 176),
+	Increment = 0.1,
+	ValueName = "Contrast",
+	Callback = function(Value)
+		game.Lighting.ColorCorrection.Contrast  = Value
+	end    
+})
+
+GameVisuals:AddSlider({
+	Name = "FogEnd",
+	Min = 100,
+	Max = 4500,
+	Default = 2000,
+	Color = Color3.fromRGB(60, 234, 176),
+	Increment = 100,
+	ValueName = "Fog-End",
+	Callback = function(Value)
+		game.Lighting.FogEnd  = Value
+	end    
+})
+
+Misc:AddBind({
+	Name = "Auto-Pickup",
+	Default = Enum.KeyCode.E,
+	Hold = false,
+	Callback = function()
+		AutoPickUp()
+	end    
+})
+
+Misc:AddBind({
+	Name = "Auto-Plant",
+	Default = Enum.KeyCode.F,
+	Hold = false,
+	Callback = function()
+		AutoPlant()
+	end    
+})
+
+Misc:AddBind({
+	Name = "AutoHeal with - Bloodfruit",
+	Default = Enum.KeyCode.Q,
+	Hold = true,
+	Callback = function()
+		KeyBindBloodfruit()
+	end    
+})
+
+Misc:AddBind({
+	Name = "AutoHeal with - Berries",
+	Default = Enum.KeyCode.H,
+	Hold = true,
+	Callback = function()
+		KeyBindBerries()
+	end    
+})
+
+
+Misc:AddBind({
+	Name = "AutoHeal with - Bluefruit",
+	Default = Enum.KeyCode.O,
+	Hold = true,
+	Callback = function()
+		KeyBindBluefruit()
+	end    
+})
+
+Misc:AddButton({
+	Name = "Destroy The UI",
+	Callback = function()
+      		OrionLib:Destroy()
+  	end    
+})
+
+OrionLib:MakeNotification({
+    Name = "FameHub",
+    Content = "You are logged In As "..Player.Name..".",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+
+
+OrionLib:Init()
